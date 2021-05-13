@@ -18,7 +18,7 @@ public class CookieManager {
 			String cName) {
 		Cookie[] cookies = request.getCookies();//생성된 모든 쿠키를 읽어온다.
 		String getValue = "";
-		if(cookies!=null) {
+		if(cookies!=null) { 
 			for(Cookie c : cookies) {//쿠키의 갯수만큼 루프
 				String cookieName = c.getName();//쿠키의 이름
 				String cookieValue = c.getValue();//쿠키에 설정된 값
