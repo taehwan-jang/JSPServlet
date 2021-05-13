@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h2>sendRedirect테스트(if문 사용하기)</h2>
-	<form action="./ResponseSendRedirect.jsp" method="post">
+	<form action="./ResponseSendRedirect.jsp" method="get">
 		<table border="1" width='300'>
 			<tr>
 				<td>아이디</td>

@@ -15,12 +15,12 @@
     <ul>
         <li>Integer타입 : <%=pageContext.getAttribute("pageNumber") %></li>
         <li>String타입 : <%=pageContext.getAttribute("pageString") %></li>
-        <li>Date타입 : <%=dateString %></li>
-        <li>MemberDTO타입1 : <%=m1Str %></li>
-        <li>MemberDTO타입2 : 아이디:<%=m2.getId() %>,
-                            비번:<%=m2.getPass() %>,
-                            이름:<%=m2.getName() %>,
-                            가입일:<%=m2.getRegidate() %></li>
+<%--         <li>Date타입 : <%=dateString %></li> --%>
+<%--         <li>MemberDTO타입1 : <%=m1Str %></li> --%>
+<%--         <li>MemberDTO타입2 : 아이디:<%=m2.getId() %>, --%>
+<%--                             비번:<%=m2.getPass() %>, --%>
+<%--                             이름:<%=m2.getName() %>, --%>
+<%--                             가입일:<%=m2.getRegidate() %></li> --%>
     </ul>    
 </body>
 </html>
