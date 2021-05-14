@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.HashMap;
 
 /*
 DAO(Data Access Object)
@@ -32,6 +33,28 @@ public class MemberDAO {
 			
 			System.out.println("Oracle 연결성공");
 
+		}
+		catch (Exception e) {
+			System.out.println("Oracle 연결시 예외발생");
+			e.printStackTrace();
+		}
+	}
+	/*
+		JSP에서 컨텍스트 초기화 파라미터를 읽어서 매개변수로
+		전달하여 DB연결을 하기위한 인자 생성자
+	 */
+	public MemberDAO(String driver,String url) {
+		try {
+			Class.forName(driver);
+			
+			String id = "kosmo";
+			String pass = "1234";
+			
+			con = DriverManager.getConnection(url,id,pass);
+			System.out.println(con); 
+			
+			System.out.println("Oracle 연결성공");
+			
 		}
 		catch (Exception e) {
 			System.out.println("Oracle 연결시 예외발생");
@@ -71,5 +94,74 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 		return isFlag;
+	}
+	/*
+	로그인 방법2 : 쿼리문을 통해 회원인증 후 MemberDTO객체에 회원정보를
+		저장한 후 JSP 쪽으로 반환해준다.
+	 */
+	public MemberDTO getMemberDTO(String uid, String upass) {
+		//회원정보 저장을 위해 DTO객체 생성
+		MemberDTO dto = new MemberDTO();
+		
+		//회원정보 조회를 위한 쿼리문 작성
+		String query = "SELECT id,pass,name FROM "
+				+ " member WHERE id=? AND pass=?";
+		try {
+			//prepared객체 생성
+			psmt = con.prepareStatement(query);
+			//인파라미터 설정
+			psmt.setString(1, uid);
+			psmt.setString(2, upass);
+			//쿼리문 실행
+			rs = psmt.executeQuery();
+			//오라클이 반환해준 ResultSet객체를 통해 결과값이 있는지 확인
+			if(rs.next()) {
+				//결과가 있다면 DTO객체에 회원정보를 저장
+				dto.setId(rs.getString("id"));
+				dto.setPass(rs.getString("pass"));
+				dto.setName(rs.getString(3));
+			}
+			else {
+				System.out.println("결과셋이 없습니다.");
+			}
+			
+		} catch (Exception e) {
+			System.out.println("getMemberDTO오류");
+			e.printStackTrace();
+		}
+		return dto;
+	}
+	public HashMap<String,String> getMemberMap(String uid, String upass) {
+		
+		HashMap<String,String> map = new HashMap<String,String>();
+		
+		String query = "SELECT id,pass,name FROM "
+				+ " member WHERE id=? AND pass=?";
+		try {
+			//prepared객체 생성
+			psmt = con.prepareStatement(query);
+			//인파라미터 설정
+			psmt.setString(1, uid);
+			psmt.setString(2, upass);
+			//쿼리문 실행
+			rs = psmt.executeQuery();
+			//오라클이 반환해준 ResultSet객체를 통해 결과값이 있는지 확인
+			if(rs.next()) {
+				//결과가 있다면 Map객체에 회원정보를 저장
+				map.put(uid,rs.getString("id"));
+				map.put(upass,rs.getString("pass"));
+				map.put("name",rs.getString(3));
+			}
+			else {
+				System.out.println("결과셋이 없습니다.");
+			}
+			
+		} catch (Exception e) {
+			System.out.println("getMemberMap오류");
+			e.printStackTrace();
+		}
+		
+		return map;
+		
 	}
 }

@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-<<<<<<< HEAD
 pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -38,8 +37,7 @@ pageEncoding="UTF-8"%>
     <a href="CookieResult.jsp">쿠키값 다음페이지에서 확인하기</a>
   </body>
 </html>
-=======
-    pageEncoding="UTF-8"%>
+ <%@pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -105,4 +103,3 @@ pageEncoding="UTF-8"%>
 	<a href="CookieResult.jsp">쿠키값 다음페이지에서 확인하기</a>
 </body>
 </html>
->>>>>>> f59ef138bbc99b7c4a564d17ae96a8264fa0c3a1
